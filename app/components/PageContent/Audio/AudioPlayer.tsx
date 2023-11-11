@@ -33,6 +33,7 @@ export default function AudioPlayer({
         backend: "MediaElement",
       });
       setWaveSurfer(ws);
+
       ws.load(audio.src, [], audio.src.split(".").pop());
       ws.on("decode", (duration) => {
         setAudioProgress(formatTime(duration)), setRawTimestamp(duration);
