@@ -5,7 +5,7 @@ import { useState } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import AddSampel from "./AddSampel";
 import AddOriginal from "./AddOriginal";
-import AddImage from "./AddImage";
+import UploadProduct from "./AddProduct";
 import { addProduct } from "@/firebase";
 
 export default function AddProduct() {
@@ -48,7 +48,10 @@ export default function AddProduct() {
       </h1>
       {/* <AddSampel setProductInfo={setProductInfo} productInfo={productInfo} /> */}
       <AddOriginal setProductInfo={setProductInfo} productInfo={productInfo} />
-      <AddImage setProductInfo={setProductInfo} productInfo={productInfo} />
+      <UploadProduct
+        setProductInfo={setProductInfo}
+        productInfo={productInfo}
+      />
       <div className="grid grid-cols-3 gap-3">
         <div className="flex flex-col pt-6">
           <label htmlFor="bpm" className="text-lg font-medium">

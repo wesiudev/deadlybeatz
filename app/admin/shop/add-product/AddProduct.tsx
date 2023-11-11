@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { FaCheck, FaPlusSquare } from "react-icons/fa";
 var randomId = require("random-id");
-export default function AddImage({
+export default function UploadProduct({
   productInfo,
   setProductInfo,
 }: {
