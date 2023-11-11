@@ -1,7 +1,7 @@
 "use client";
 import { renderMarkdown } from "@/app/lib/parseMarkdown";
 import { polishToEnglish } from "@/app/utils/polishToEnglish";
-import { addBlogPost, updateBlogPost } from "@/firebase";
+import { updateBlogPost } from "@/firebase";
 import Link from "next/link";
 import { useState } from "react";
 import { FaEdit, FaLink, FaLongArrowAltLeft, FaTrash } from "react-icons/fa";
