@@ -2,11 +2,12 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "@/redux/slices/audio";
+
 import { getPost } from "@/app/lib/getPost";
 import { getBlogPosts } from "@/firebase";
 import Image from "next/image";
 import { Post } from "@/app/types";
+import { setPosts } from "@/app/redux/slices/posts";
 
 export default function Page() {
   const dispatch = useDispatch();
