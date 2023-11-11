@@ -24,30 +24,30 @@ export default function PageContent() {
                     title: "",
                     genre: "Double Tempo Trap 150BPM",
                   },
-                  {
-                    index: 1,
-                    src: "https://firebasestorage.googleapis.com/v0/b/quixy-99e34.appspot.com/o/dt-trap-155bpm.mp3?alt=media&token=f989b759-26da-453e-9d0c-139c45a6b0c4",
-                    title: "",
-                    genre: "Double Tempo Trap 155BPM",
-                  },
-                  {
-                    index: 2,
-                    src: "https://firebasestorage.googleapis.com/v0/b/quixy-99e34.appspot.com/o/hiphop-85bpm.mp3?alt=media&token=cea67bc9-082f-4692-b8df-7bb69e96e178",
-                    title: "",
-                    genre: "Hip Hop 85BPM",
-                  },
-                  {
-                    index: 3,
-                    src: "https://firebasestorage.googleapis.com/v0/b/quixy-99e34.appspot.com/o/hiphop-89bpm.mp3?alt=media&token=8c3f1ad0-0e62-44de-b4f2-5033c2f00fe4",
-                    title: "",
-                    genre: "Hip Hop 89BPM",
-                  },
-                  {
-                    index: 4,
-                    src: "https://firebasestorage.googleapis.com/v0/b/quixy-99e34.appspot.com/o/hiphop-90bpm.mp3?alt=media&token=cfb3bae7-02a7-4bee-b788-2b3fad44394c",
-                    title: "",
-                    genre: "Hip Hop 90BPM",
-                  },
+                  // {
+                  //   index: 1,
+                  //   src: "https://firebasestorage.googleapis.com/v0/b/quixy-99e34.appspot.com/o/dt-trap-155bpm.mp3?alt=media&token=f989b759-26da-453e-9d0c-139c45a6b0c4",
+                  //   title: "",
+                  //   genre: "Double Tempo Trap 155BPM",
+                  // },
+                  // {
+                  //   index: 2,
+                  //   src: "https://firebasestorage.googleapis.com/v0/b/quixy-99e34.appspot.com/o/hiphop-85bpm.mp3?alt=media&token=cea67bc9-082f-4692-b8df-7bb69e96e178",
+                  //   title: "",
+                  //   genre: "Hip Hop 85BPM",
+                  // },
+                  // {
+                  //   index: 3,
+                  //   src: "https://firebasestorage.googleapis.com/v0/b/quixy-99e34.appspot.com/o/hiphop-89bpm.mp3?alt=media&token=8c3f1ad0-0e62-44de-b4f2-5033c2f00fe4",
+                  //   title: "",
+                  //   genre: "Hip Hop 89BPM",
+                  // },
+                  // {
+                  //   index: 4,
+                  //   src: "https://firebasestorage.googleapis.com/v0/b/quixy-99e34.appspot.com/o/hiphop-90bpm.mp3?alt=media&token=cfb3bae7-02a7-4bee-b788-2b3fad44394c",
+                  //   title: "",
+                  //   genre: "Hip Hop 90BPM",
+                  // },
                 ]}
               />
             </div>

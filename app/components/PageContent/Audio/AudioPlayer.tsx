@@ -16,6 +16,7 @@ export default function AudioPlayer({
   const [rawTimestamp, setRawTimestamp] = useState(0);
   const [waveSurfer, setWaveSurfer] = useState<WaveSurfer>();
   const [isLoading, setLoading] = useState(false);
+  const [peaks, setPeaks] = useState<any>();
   useEffect(() => {
     const ctx = document.createElement("canvas").getContext("2d");
     if (ctx) {
@@ -30,7 +31,7 @@ export default function AudioPlayer({
         url: audio.src,
         height: 50,
         dragToSeek: true,
-        backend: "MediaElement",
+        peaks: peaks,
       });
       setWaveSurfer(ws);
 
@@ -38,13 +39,14 @@ export default function AudioPlayer({
       ws.on("decode", (duration) => {
         setAudioProgress(formatTime(duration)),
           setRawTimestamp(duration),
-          console.log(
-            ws.exportPeaks({ channels: 300, maxLength: 0, precision: 300 })
+          setPeaks(
+            ws.exportPeaks({ channels: 300, maxLength: 300, precision: 300 })
           );
       });
       ws.on("timeupdate", (currentTime) => {
         setAudioProgress(formatTime(currentTime)), setRawTimestamp(currentTime);
       });
+      console.log(peaks);
 
       setLoading(false);
       return () => {
