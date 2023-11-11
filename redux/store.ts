@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import audio from "./slices/audio";
+import posts from "./slices/posts";
 
 export const store = configureStore({
   reducer: {
     audio: audio,
+    posts: posts,
   },
 });
 
