@@ -8,9 +8,9 @@ export async function generateStaticParams() {
   }));
 }
 export default async function Page({ params }: { params: any }) {
-  const tattoo = await getProducts("deadlybeatz").then((res: any) =>
-    res?.beats.find((beat: any) => polishToEnglish(beat.title) === params.title)
-  );
+  // const tattoo = await getProducts("deadlybeatz").then((res: any) =>
+  //   res?.beats.find((beat: any) => polishToEnglish(beat.title) === params.title)
+  // );
 
   return <div></div>;
 }
