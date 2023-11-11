@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body.modal-open {
+  overflow: hidden;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 15px;
+  height: 6px;
+  background-color: #5e5c5d;
+  padding: 2px;
+  margin: 2px;
+  border-radius: 99px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(126 34 206);
+  border-radius: 99px;
+  padding: 2px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(149, 146, 151);
+}
+.scrollbarMain::-webkit-scrollbar {
+  width: 15px;
+  height: 6px;
+  background-color: #5e5c5d;
+  padding: 2px;
+  margin: 2px;
+}
+
+.scrollbarMain::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0);
+
+  padding: 2px;
+}
+
+.scrollbarMain::-webkit-scrollbar-thumb:hover {
+  background: rgb(27, 27, 27);
+}
+.scrollbarwhite::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
+  background-color: #181818;
+  padding: 2px;
+  margin: 2px;
+  border-radius: 999px;
+}
+
+.scrollbarwhite::-webkit-scrollbar-thumb {
+  background: rgb(39, 214, 71);
+  padding: 2px;
+  border-radius: 999px;
+}
+
+.scrollbarwhite::-webkit-scrollbar-thumb:hover {
+  background: rgb(74 222 128);
+}
+.menu {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+.line {
+  fill: none;
+  stroke: black;
+  stroke-width: 4;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.line1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 4;
+}
+.line2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 4;
+}
+.line3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 4;
+}
+.opened .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 4;
+}
+.opened .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 4;
+}
+.opened .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 4;
+}
+.lineWhite {
+  fill: none;
+  stroke: white;
+  stroke-width: 4;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+#waveform {
+  cursor: pointer;
+  position: relative;
+}
+#hover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+  height: 100%;
+  width: 0;
+  mix-blend-mode: overlay;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+#waveform:hover #hover {
+  opacity: 1;
+}
+#time,
+#duration {
+  position: absolute;
+  z-index: 11;
+  top: 50%;
+  margin-top: -1px;
+  transform: translateY(-50%);
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 2px;
+  color: #ddd;
+}
+#time {
+  left: 0;
+}
+#duration {
+  right: 0;
+}
