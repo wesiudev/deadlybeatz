@@ -36,7 +36,11 @@ export default function AudioPlayer({
 
       ws.load(audio.src, [], audio.src.split(".").pop());
       ws.on("decode", (duration) => {
-        setAudioProgress(formatTime(duration)), setRawTimestamp(duration);
+        setAudioProgress(formatTime(duration)),
+          setRawTimestamp(duration),
+          console.log(
+            ws.exportPeaks({ channels: 300, maxLength: 0, precision: 300 })
+          );
       });
       ws.on("timeupdate", (currentTime) => {
         setAudioProgress(formatTime(currentTime)), setRawTimestamp(currentTime);
