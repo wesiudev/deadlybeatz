@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { Metadata } from "next";
 import Script from "next/script";
 import "aos/dist/aos.css";
-import { Providers } from "@/redux/Provider";
+import { Providers } from "@/app/redux/Provider";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import { Anton } from "next/font/google";
