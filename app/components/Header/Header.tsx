@@ -18,7 +18,7 @@ export default function Header() {
     <div
       className="p-3 w-full lg:h-full lg:w-[193px] xl:w-[250px]
     flex flex-row lg:flex-col items-center justify-between
-    fixed top-0 left-0 bg-[#f5f5f5]  lg:bg-transparent
+    fixed top-0 left-0 bg-[#f5f5f5]  
     lg:border-r border-[#d4d4d4a9]  lg:border-0 z-50"
     >
       <div className="">

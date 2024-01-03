@@ -53,9 +53,20 @@ async function addProduct(websiteName, productInfo) {
   if (!docSnap.data()) {
     await setDoc(doc(db, websiteName, "products"), { products: [productInfo] });
   } else {
-    await updateDoc(doc(db, websiteName, "products"), {
-      products: arrayUnion(productInfo),
-    });
+    const products = docSnap.data().products;
+    const productIndex = products.findIndex(
+      (product) => product.title === productInfo.title
+    );
+    if (productIndex === -1) {
+      await updateDoc(doc(db, websiteName, "products"), {
+        products: arrayUnion(productInfo),
+      });
+    } else {
+      const errorMessage = "Product already exists in database";
+
+      window.alert(errorMessage);
+      throw new Error(errorMessage);
+    }
   }
 }
 async function updateBlogPost(websiteName, postId, updatedPost) {

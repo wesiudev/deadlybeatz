@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import AddSampel from "./AddSampel";
 import AddOriginal from "./AddOriginal";
 import UploadProduct from "./AddProduct";
 import { addProduct } from "@/firebase";
@@ -33,12 +32,12 @@ export default function AddProduct() {
       [name]: value,
     }));
   };
-
+  const [added, setAdded] = useState(false);
   return (
     <div className="flex flex-col px-6 text-white">
       <Link
         href="/admin/shop"
-        className="flex flex-row items-center pt-12 text-2xl"
+        className="flex flex-row items-center pt-12 text-2xl w-max"
       >
         <FaLongArrowAltLeft className="mr-3" />
         Powrót
@@ -47,11 +46,13 @@ export default function AddProduct() {
         Nowy produkt
       </h1>
       {/* <AddSampel setProductInfo={setProductInfo} productInfo={productInfo} /> */}
-      <AddOriginal setProductInfo={setProductInfo} productInfo={productInfo} />
-      <UploadProduct
+      <AddOriginal
+        added={added}
+        setAdded={setAdded}
         setProductInfo={setProductInfo}
         productInfo={productInfo}
       />
+
       <div className="grid grid-cols-3 gap-3">
         <div className="flex flex-col pt-6">
           <label htmlFor="bpm" className="text-lg font-medium">
@@ -159,7 +160,11 @@ export default function AddProduct() {
         </div>
       </div>
       <button
-        onClick={() => addProduct("deadlybeatz")}
+        onClick={() => {
+          addProduct("deadlybeatz", productInfo).then(() => {
+            alert("Dodano produkt!"), setAdded(true);
+          });
+        }}
         className="bg-green-400 p-12 w-full text-3xl mt-12"
       >
         Dodaj produkt

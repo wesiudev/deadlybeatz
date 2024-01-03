@@ -10,7 +10,7 @@ export default function Categories() {
       <div className="grid lg:grid-cols-3 w-[750px] xl:w-[950px] mx-auto 2xl:w-[900px] 2xl:mx-0 gap-6 2xl:gap-4 mt-8">
         {categories.map((item: any, i: any) => (
           <Link
-            href={`/bity-za-darmo?category=${item.query}`}
+            href={`/beats?category=${item.query}`}
             key={i}
             className={` flex flex-col group w-full`}
           >
@@ -53,9 +53,9 @@ const categories = [
     description: "",
   },
   {
-    title: "Hip Hop",
-    query: "hip-hop",
-    image: "/assets/category-hip-hop.webp",
+    title: "Pop",
+    query: "pop",
+    image: "/assets/category-pop.png",
     description: "",
   },
   {

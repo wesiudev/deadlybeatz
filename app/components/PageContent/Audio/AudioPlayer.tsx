@@ -6,49 +6,44 @@ export default function AudioPlayer({
   currentAudio,
   setCurrentAudio,
   audio,
+  index,
 }: {
   currentAudio: number;
   setCurrentAudio: Function;
   audio: any;
+  index: number;
 }) {
   const waveformRef = useRef(null);
   const [audioProgress, setAudioProgress] = useState("0:00");
   const [rawTimestamp, setRawTimestamp] = useState(0);
   const [waveSurfer, setWaveSurfer] = useState<WaveSurfer>();
-  const [isLoading, setLoading] = useState(false);
-  const [peaks, setPeaks] = useState<any>();
+
   useEffect(() => {
-    const ctx = document.createElement("canvas").getContext("2d");
+    const ctx = document?.createElement("canvas").getContext("2d");
     if (ctx) {
-      const gradient = ctx.createLinearGradient(0, 0, 0, 150);
+      const gradient = ctx?.createLinearGradient(0, 0, 0, 150);
       gradient.addColorStop(0, "rgb(200, 200, 200)");
       gradient.addColorStop(0.5, "rgb(0, 0, 0)");
       gradient.addColorStop(1, "rgb(0, 0, 0)");
-      const ws = WaveSurfer.create({
-        container: waveformRef.current!,
+      const ws = WaveSurfer?.create({
+        container: waveformRef?.current!,
         waveColor: gradient,
         progressColor: "#FF5500",
-        url: audio.src,
+        url: audio?.sampleUrl,
         height: 50,
         dragToSeek: true,
-        peaks: peaks,
+        backend: "MediaElement",
       });
       setWaveSurfer(ws);
 
-      ws.load(audio.src, [], audio.src.split(".").pop());
-      ws.on("decode", (duration) => {
-        setAudioProgress(formatTime(duration)),
-          setRawTimestamp(duration),
-          setPeaks(
-            ws.exportPeaks({ channels: 300, maxLength: 300, precision: 300 })
-          );
+      ws?.load(audio?.sampleUrl, [], audio?.sampleUrl?.split(".").pop());
+      ws?.on("decode", (duration) => {
+        setAudioProgress(formatTime(duration)), setRawTimestamp(duration);
       });
-      ws.on("timeupdate", (currentTime) => {
+      ws?.on("timeupdate", (currentTime) => {
         setAudioProgress(formatTime(currentTime)), setRawTimestamp(currentTime);
       });
-      console.log(peaks);
 
-      setLoading(false);
       return () => {
         ws.destroy();
       };
@@ -61,7 +56,7 @@ export default function AudioPlayer({
     return `${minutes}:${paddedSeconds}`;
   };
   useEffect(() => {
-    currentAudio === audio.index ? waveSurfer?.play() : waveSurfer?.pause();
+    currentAudio === index ? waveSurfer?.play() : waveSurfer?.pause();
   }, [currentAudio]);
   useEffect(() => {
     if (rawTimestamp === waveSurfer?.getDuration()) {
@@ -72,10 +67,18 @@ export default function AudioPlayer({
     <div className="flex flex-col mb-3">
       <>
         <div className="flex flex-row items-center justify-between text-white">
-          {" "}
-          <span className="font-bold">{audio.genre}</span>
+          <div className="">
+            <span
+              className={`font-bold ${
+                currentAudio === index ? "text-green-400" : "text-white"
+              }`}
+            >
+              {audio?.title}
+            </span>
+            <span className="text-gray-600 ml-3">{audio?.genre}</span>
+          </div>
           <p>
-            {currentAudio === audio.index ? (
+            {currentAudio === index ? (
               <>
                 {" "}
                 {audioProgress} / {formatTime(waveSurfer?.getDuration() || 0)}{" "}
@@ -88,7 +91,7 @@ export default function AudioPlayer({
         <div
           className="h-max"
           onClick={() => {
-            setCurrentAudio(audio.index);
+            setCurrentAudio(index);
           }}
           ref={waveformRef}
         />
@@ -138,11 +141,11 @@ export default function AudioPlayer({
 //       ws.on("timeupdate", (currentTime) => {
 //         setAudioProgress(formatTime(currentTime)), setRawTimestamp(currentTime);
 //       });
-//       ws.load(audio.src, [], audio.src.split(".").pop());
+//       ws.load(audio.sampleUrl, [], audio.sampleUrl.split(".").pop());
 //     } else {
 //       waveSurfer.play();
 //     }
-//   }, [audio.src, formatTime, waveSurfer]);
+//   }, [audio.sampleUrl, formatTime, waveSurfer]);
 
 //   useEffect(() => {
 //     if (waveSurfer) {
