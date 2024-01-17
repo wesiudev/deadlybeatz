@@ -41,12 +41,53 @@ async function addBlogPost(websiteName, post) {
     });
   }
 }
+// async function getProducts(websiteName) {
+//   const docRef = doc(db, websiteName, "products");
+//   const docSnap = await getDoc(docRef);
+//   return docSnap.data();
+// }
 async function getProducts(websiteName) {
   const docRef = doc(db, websiteName, "products");
   const docSnap = await getDoc(docRef);
-  return docSnap.data();
-}
 
+  if (docSnap.exists()) {
+    const productsData = docSnap.data();
+
+    // Modify this part to only return the first 5 products
+    const limitedProducts = productsData.products.slice(0, 5);
+
+    return { products: limitedProducts };
+  } else {
+    const errorMessage = "Products not found in the database";
+    window.alert(errorMessage);
+    throw new Error(errorMessage);
+  }
+}
+async function updateProduct(websiteName, productInfo) {
+  const docRef = doc(db, websiteName, "products");
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.data()) {
+    const errorMessage = "Product not found in the database";
+    window.alert(errorMessage);
+    throw new Error(errorMessage);
+  } else {
+    const products = docSnap.data().products;
+    const productIndex = products.findIndex(
+      (product) => product.title === productInfo.title
+    );
+
+    if (productIndex !== -1) {
+      // If the product exists, update it in the array
+      products[productIndex] = productInfo;
+      await setDoc(doc(db, websiteName, "products"), { products });
+    } else {
+      const errorMessage = "Product not found in the database";
+      window.alert(errorMessage);
+      throw new Error(errorMessage);
+    }
+  }
+}
 async function addProduct(websiteName, productInfo) {
   const docRef = doc(db, websiteName, "products");
   const docSnap = await getDoc(docRef);
@@ -103,4 +144,5 @@ export {
   updateBlogPost,
   getProducts,
   addProduct,
+  updateProduct,
 };

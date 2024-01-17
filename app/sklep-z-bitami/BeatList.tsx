@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import AudioPlayer from "../components/PageContent/Audio/AudioPlayer";
+import AudioPlayer from "@/components/PageContent/Audio/AudioPlayer";
 
 export default function BeatList({ beats }: { beats: any }) {
   const [currentAudio, setCurrentAudio] = useState(-1);

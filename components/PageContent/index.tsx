@@ -1,3 +1,4 @@
+"use client";
 import Hero from "./Hero";
 import Categories from "./Categories";
 import AudioPlayer from "./Audio/AudioPlayer";

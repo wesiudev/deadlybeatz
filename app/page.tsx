@@ -1,6 +1,6 @@
-import About from "./components/About";
+import About from "@/components/About";
 
-import PageContent from "./components/PageContent";
+import PageContent from "@/components/PageContent";
 
 export default async function HomePage() {
   return (
