@@ -53,10 +53,7 @@ async function getProducts(websiteName) {
   if (docSnap.exists()) {
     const productsData = docSnap.data();
 
-    // Modify this part to only return the first 5 products
-    const limitedProducts = productsData.products.slice(0, 7);
-
-    return { products: limitedProducts };
+    return { products: productsData.products };
   } else {
     const errorMessage = "Products not found in the database";
     window.alert(errorMessage);
@@ -81,6 +78,7 @@ async function updateProduct(websiteName, productInfo) {
       // If the product exists, update it in the array
       products[productIndex] = productInfo;
       await setDoc(doc(db, websiteName, "products"), { products });
+      return { message: "Success" };
     } else {
       const errorMessage = "Product not found in the database";
       window.alert(errorMessage);

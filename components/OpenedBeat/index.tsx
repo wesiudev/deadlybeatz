@@ -1,6 +1,8 @@
 "use client";
 import { updateProduct } from "@/firebase";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
+
 import WaveSurfer from "wavesurfer.js";
 
 export default function OpenedBeat({
@@ -30,13 +32,17 @@ export default function OpenedBeat({
         url: beat?.sampleUrl,
         height: 50,
         dragToSeek: true,
-        peaks: beat.peaks ? beat.peaks : null,
+        peaks: beat.peaks ? JSON.parse(beat.peaks) : null,
         backend: "MediaElement",
       });
 
       setWaveSurfer(ws);
 
-      ws?.load(beat?.sampleUrl, undefined, beat?.sampleUrl?.split(".").pop());
+      ws?.load(
+        beat?.sampleUrl,
+        beat.peaks ? JSON.parse(beat.peaks) : null,
+        beat?.sampleUrl?.split(".").pop()
+      );
       ws?.on("decode", (duration) => {
         setAudioProgress(formatTime(duration)), setRawTimestamp(duration);
       });
@@ -70,8 +76,8 @@ export default function OpenedBeat({
           setBeatPeaks(
             JSON.stringify(
               waveSurfer?.exportPeaks({
-                channels: 2, // Set the number of channels to 2
-                maxLength: 1000, // Set the maximum length of peaks to 1000
+                channels: 1, // Set the number of channels to 2
+                maxLength: 250, // Set the maximum length of peaks to 1000
               })
             )
           ),
@@ -83,7 +89,9 @@ export default function OpenedBeat({
       </button>
 
       <button
-        onClick={() => updateProduct("deadlybeatz", beat)}
+        onClick={() => {
+          updateProduct("deadlybeatz", beat).then(() => setBeat());
+        }}
         className="bg-black text-white font-bold text-2xl p-3 mt-2"
       >
         Save changes

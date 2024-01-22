@@ -1,5 +1,4 @@
 "use client";
-import { updateProduct } from "@/firebase";
 import { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 

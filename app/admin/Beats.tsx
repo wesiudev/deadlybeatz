@@ -9,7 +9,11 @@ export default function Beats({ beats }: { beats: any }) {
     <div className="grid grid-cols-4 relative">
       {openedBeat && <OpenedBeat beat={openedBeat} setBeat={setOpenedBeat} />}
       {beats.map((item: any, i: any) => (
-        <div onClick={() => setOpenedBeat(item)} key={i} className="text-white">
+        <div
+          onClick={() => setOpenedBeat(item)}
+          key={i}
+          className={`${item.peaks ? "text-green-500" : "text-white"} `}
+        >
           {item.title}
         </div>
       ))}

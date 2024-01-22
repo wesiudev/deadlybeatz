@@ -7,7 +7,8 @@ import { Providers } from "@/app/redux/Provider";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer";
 import { Anton } from "next/font/google";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function RootLayout({
   children,
 }: {
@@ -20,6 +21,7 @@ export default function RootLayout({
        w-full overflow-x-hidden relative font-coco`}
       >
         <Header />
+        <ToastContainer />
         <Providers>{children}</Providers>
         <Footer />
         <noscript>
