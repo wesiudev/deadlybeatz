@@ -32,27 +32,19 @@ export default function AudioPlayer({
         url: audio?.sampleUrl,
         height: 50,
         dragToSeek: true,
-        peaks: audio?.peaks ? JSON.parse(audio?.peaks) : null,
+        peaks: JSON.parse(audio?.peaks),
         backend: "MediaElement",
       });
 
       setWaveSurfer(ws);
 
-      ws?.load(audio?.sampleUrl, undefined, audio?.sampleUrl?.split(".").pop());
+      ws?.load(
+        audio?.sampleUrl,
+        JSON.parse(audio?.peaks),
+        audio?.sampleUrl?.split(".").pop()
+      );
       ws?.on("decode", (duration) => {
         setAudioProgress(formatTime(duration)), setRawTimestamp(duration);
-        const peaks = ws?.exportPeaks({
-          channels: 2, // Set the number of channels to 2
-          maxLength: 1000, // Set the maximum length of peaks to 1000
-          precision: 0.01, // Set the precision of peaks to 0.01
-        });
-
-        if (audio.peaks === undefined && peaks) {
-          updateProduct("deadlybeatz", {
-            ...audio,
-            peaks: JSON.stringify(peaks),
-          });
-        }
       });
       ws?.on("timeupdate", (currentTime) => {
         setAudioProgress(formatTime(currentTime)), setRawTimestamp(currentTime);
