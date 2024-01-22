@@ -54,7 +54,7 @@ async function getProducts(websiteName) {
     const productsData = docSnap.data();
 
     // Modify this part to only return the first 5 products
-    const limitedProducts = productsData.products.slice(0, 5);
+    const limitedProducts = productsData.products.slice(0, 7);
 
     return { products: limitedProducts };
   } else {

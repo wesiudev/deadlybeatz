@@ -1,8 +1,11 @@
+import { getProducts } from "@/firebase";
 import { Metadata } from "next";
 import Link from "next/link";
+import Beats from "./Beats";
 export const metadata: Metadata = {
   title: "Panel administracyjny",
 };
-export default function Admin() {
-  return <div className="grid grid-cols-4"></div>;
+export default async function Admin() {
+  const req = await getProducts("deadlybeatz");
+  return <Beats beats={req.products} />;
 }

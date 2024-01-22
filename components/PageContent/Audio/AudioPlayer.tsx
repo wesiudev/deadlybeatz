@@ -18,7 +18,6 @@ export default function AudioPlayer({
   const [audioProgress, setAudioProgress] = useState("0:00");
   const [rawTimestamp, setRawTimestamp] = useState(0);
   const [waveSurfer, setWaveSurfer] = useState<WaveSurfer>();
-  const [decoded, setDecoded] = useState(false);
   useEffect(() => {
     const ctx = document?.createElement("canvas").getContext("2d");
     if (ctx) {
@@ -34,6 +33,7 @@ export default function AudioPlayer({
         height: 50,
         dragToSeek: true,
         peaks: audio?.peaks ? JSON.parse(audio?.peaks) : null,
+        backend: "MediaElement",
       });
 
       setWaveSurfer(ws);
@@ -47,7 +47,7 @@ export default function AudioPlayer({
           precision: 0.01, // Set the precision of peaks to 0.01
         });
 
-        if (!audio.peaks) {
+        if (audio.peaks === undefined && peaks) {
           updateProduct("deadlybeatz", {
             ...audio,
             peaks: JSON.stringify(peaks),
