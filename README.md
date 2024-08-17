@@ -1,4 +1,4 @@
-# Deadly Beatz
+# DeadlyBeatz
 
 Platform for music producers
 
